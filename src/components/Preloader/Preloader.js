@@ -1,11 +1,10 @@
-  
-import React from "react";
-import "./Preloader.css";
+import React from 'react';
+import './Preloader.css';
 
 function Preloader() {
   return (
     <div className="preloader">
-      <i className="circle-preloader"></i>
+      <div className="preloader__image"></div>
       <p className="preloader__text">Searching for news...</p>
     </div>
   );

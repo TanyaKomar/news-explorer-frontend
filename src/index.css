@@ -3,9 +3,9 @@
 @import url(./components/Header/Header.css);
 @import url(./components/HeaderNav/HeaderNav.css);
 @import url(./components/SearchForm/SearchForm.css);
+@import url(./components/Preloader/Preloader.css);
+@import url(./components/NotFound/NotFound.css);
+@import url(./components/NewsCardList/NewsCardList.css);
+@import url(./components/NewsCard/NewsCard.css);
+@import url(./components/About/About.css);
 @import url(./components/Footer/Footer.css);
-
-.main {
-  margin: 0;
-  font-family: 'Inter', 'Roboto', 'Roboto Slab' Arial, sans-serif;
-}

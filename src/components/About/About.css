@@ -1,0 +1,33 @@
+.about {
+    max-width: calc(100% - 2 * 104px);
+    margin: 80px auto;
+    display: flex;
+}
+
+.about__image {
+    width: 464px;
+    height: 464px;
+    border-radius: 50%;
+    margin-right: 56px;
+}
+
+.about__title {
+    font-family: 'Roboto Slab';
+    font-size: 40px;
+    line-height: 46px;
+    font-weight: 400;
+    color: #1A1B22;
+    margin: 50px 0 24px;
+    padding: 0;
+}
+
+.about__description {
+    max-width: 600px;
+    font-family: 'Roboto';
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #1A1B22;
+    margin: 0;
+    padding: 0;
+}
