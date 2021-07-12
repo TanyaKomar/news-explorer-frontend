@@ -7,7 +7,6 @@ function Header() {
   return (
     <header className="header">
       <HeaderNav />
-      <SearchForm />
     </header>
   );
 }

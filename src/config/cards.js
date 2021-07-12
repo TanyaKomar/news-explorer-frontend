@@ -1,6 +1,8 @@
 import dogImage from '../images/card_dog.png';
 import lakeImage from '../images/card_lake.png';
 import elkImage from '../images/card_elk.png';
+import skyImage from '../images/card_sky.png';
+import geyserImage from '../images/card_geyser.png';
 
 const cards = [
   {
@@ -22,6 +24,20 @@ const cards = [
     date: 'October 19, 2020',
     title: 'Grand Teton Renews Historic Crest Trail',
     text: '“The linking together of the Cascade and Death Canyon trails, at their heads, took place on October 1, 1933, and marked the first step in the realization of a plan whereby the hiker will be enabled to visit that most fascinating region…In traversing this loop, one completely encircles the Three Tetons and adjacent high peaks, viewing them from all sides. In this way one learns to know these peaks with an intimacy impossible to the visitor who contents himself with distant views.',
+    source: 'national geographic',
+  },
+  {
+    image: skyImage,
+    date: 'March 16, 2020',
+    title: 'Scientists Don\'t Know Why Polaris Is So Weird',
+    text: 'Humans have long relied on the starry sky to push into new frontiers, sail to the very edge of the world and find their way back home again. Even animals look to the stars to guide them.',
+    source: 'treehugger',
+  },
+  {
+    image: geyserImage,
+    date: 'October 19, 2020',
+    title: 'Nostalgic Photos of Tourists in U.S. National Parks',
+    text: 'Uri Løvevild Golman and Helle Løvevild Golman are National Geographic Explorers and conservation photographers who just completed a project and book they call their love letter to nature.',
     source: 'national geographic',
   },
 ];
