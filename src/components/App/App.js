@@ -5,13 +5,15 @@ import Header from '../Header/Header';
 import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 import Footer from '../Footer/Footer';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
+// import CurrentUserContext from '../../contexts/CurrentUserContext';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
+import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function App() {
-  const [currentUser, setCurrentUser] = React.useState({});
+  // const [currentUser, setCurrentUser] = React.useState({});
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    // <CurrentUserContext.Provider value={currentUser}>
+    <>
       <Route exact path="/">
         <Header />
         <Main />
@@ -20,8 +22,10 @@ function App() {
         <SavedNewsHeader />
         <SavedNews />
       </Route>
+      <PopupWithForm />
       <Footer />
-    </CurrentUserContext.Provider>
+    </>
+    // </CurrentUserContext.Provider>
   );
 }
 

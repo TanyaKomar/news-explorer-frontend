@@ -7,7 +7,7 @@ function NotFound() {
     <div className="not-found">
       <img className="not-found__image" src={notFound} alt="nothing found"></img>
       <h3 className="not-found__title">Nothing Found</h3>
-      <p className="not-found__text">Sorry, but nothing matched 
+      <p className="not-found__text">Sorry, but nothing matched
 your search terms.</p>
     </div>
   );

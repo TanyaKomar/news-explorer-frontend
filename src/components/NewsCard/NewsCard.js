@@ -4,8 +4,8 @@ import cards from '../../config/cards';
 
 function NewsCard() {
   return (
-    cards.map(card => {
-      return <li className="news-card">
+    cards.map((card) => (
+      <li className="news-card">
         <img className="news-card__image" src={card.image} alt={card.title}></img>
         <button className="news-card__bookmark" type="button"></button>
         <div className="news-card__description">
@@ -15,8 +15,7 @@ function NewsCard() {
           <p className="news-card__source">{card.source}</p>
         </div>
       </li>
-    })
-    
+    ))
   );
 }
 
