@@ -4,15 +4,14 @@ import Preloader from '../Preloader/Preloader';
 import NotFound from '../NotFound/NotFound';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import About from '../About/About';
-import SearchForm from '../SearchForm/SearchForm';
+import cards from '../../config/cards';
 
 function Main() {
   return (
     <main>
-      <SearchForm />
       <Preloader />
       <NotFound />
-      <NewsCardList />
+      <NewsCardList cards={cards}/>
       <About />
     </main>
   );

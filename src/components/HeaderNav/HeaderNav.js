@@ -1,6 +1,7 @@
 import './HeaderNav.css';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import menu from '../../images/header-nav_menu.svg';
 
 function HeaderNav() {
   return (
@@ -8,6 +9,7 @@ function HeaderNav() {
       <NavLink className="header-nav__title" to="/">
         NewsExplorer
       </NavLink>
+      <img className="header-nav__menu" src={menu} alt="navigation menu"></img>
       <ul className="header-nav__items">
         <li>
           <NavLink className="header-nav__link" to="/">

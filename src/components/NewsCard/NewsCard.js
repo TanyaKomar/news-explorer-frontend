@@ -1,10 +1,8 @@
 import React from 'react';
 import './NewsCard.css';
-import cards from '../../config/cards';
 
-function NewsCard() {
+function NewsCard({ card }) {
   return (
-    cards.map((card) => (
       <li className="news-card">
         <img className="news-card__image" src={card.image} alt={card.title}></img>
         <button className="news-card__bookmark" type="button"></button>
@@ -15,7 +13,6 @@ function NewsCard() {
           <p className="news-card__source">{card.source}</p>
         </div>
       </li>
-    ))
   );
 }
 

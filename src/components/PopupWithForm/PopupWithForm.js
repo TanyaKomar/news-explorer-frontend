@@ -3,7 +3,7 @@ import React from 'react';
 
 function PopupWithForm(popupType, isOpen, onClose) {
   return (
-    <div className="popup_open">
+    <div className="popup">
       <div className="popup__content">
         <button className="popup__close" type="button" aria-label="Close popup" onClick={onClose}></button>
         <h3 className="popup__title">{popupType === 'success' ? 'Registration successfully completed' : `Sign ${popupType === 'signin' ? 'in' : 'up'}`}</h3>
