@@ -1,29 +1,31 @@
 .news-card-list {
-    max-width: calc(100% - 2*104px);
+    background-color: #F5F6F7;
+}
+.news-card-list__container {
+    max-width: 1440px;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: auto;
-    background-color: #F5F6F7;
     padding: 80px 104px;
 }
 
 .news-card-list__title {
-    font-family: 'Roboto Slab';
+    font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
     font-size: 40px;
     line-height: 46px;
     font-weight: 400;
     color: #1A1B22;
-    align-self: start;
+    align-self: flex-start;
     margin: 0;
     padding: 0;
 }
 
 .news-card-list__list {
     width: 100%;
-    margin: auto;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, 400px);
+    grid-template-columns: repeat(3,minmax(224px,1fr));
     grid-gap: 16px;
     justify-content: center;
     margin-top: 64px;
@@ -33,7 +35,7 @@
 }
 
 .news-card-list__button {
-    font-family: 'Roboto';
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
     font-size: 18px;
     line-height: 24px;
     font-weight: 500;
@@ -44,10 +46,15 @@
     border-radius: 80px;
     margin: 0;
     padding: 20px 98px;
+    cursor: pointer;
+}
+
+.news-card-list__button:hover {
+    background-color: #E8E8E8;
 }
 
 @media screen and (max-width: 1048px) {
-    .news-card-list {
+    .news-card-list__container {
         max-width: calc(100% - 2*40px);
         padding: 40px;
     }
@@ -55,7 +62,7 @@
 
 @media screen and (max-width: 896px) {
     .news-card-list__list {
-        grid-template-columns: repeat(auto-fit, 224px);
+        grid-template-columns: repeat(auto-fit,minmax(224px,1fr));
         grid-gap: 8px;
         margin-top: 32px;
         margin-bottom: 32px;
@@ -72,13 +79,12 @@
 }
 
 @media screen and (max-width: 585px) {
-    .news-card-list {
+    .news-card-list__container {
         max-width: calc(100% - 2*16px);
         padding: 32px 16px;
     }
 
     .news-card-list__list {
-        grid-template-columns: repeat(auto-fit, 288px);
         grid-gap: 8px;
         margin-top: 58px;
         margin-bottom: 15px;

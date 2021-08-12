@@ -13,15 +13,15 @@ function Footer() {
           <NavLink className="footer__link" to="/">
             Home
           </NavLink>
-          <a className="footer__link" href="https://practicum.yandex.com/">
+          <a className="footer__link" href="https://practicum.yandex.com/" target="_blank">
             Practicum by Yandex
           </a>
         </div>
         <div className="footer__right-links">
-          <a className="footer__link" href="https://github.com/yandex-praktikum">
+          <a className="footer__link" href="https://github.com/yandex-praktikum" target="_blank">
             <img src={githubIcon} alt="github icon"></img>
           </a>
-          <a className="footer__link" href="https://www.facebook.com/YPracticum">
+          <a className="footer__link" href="https://www.facebook.com/YPracticum" target="_blank">
             <img src={facebookIcon} alt="facebook icon"></img>
           </a>
         </div>

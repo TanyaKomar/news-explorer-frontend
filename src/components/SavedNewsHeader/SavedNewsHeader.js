@@ -1,11 +1,12 @@
 import './SavedNewsHeader.css';
+import '../HeaderNav/HeaderNav.css';
 import React from 'react';
 import HeaderNav from '../HeaderNav/HeaderNav';
 
-function SavedNewsHeader() {
+function SavedNewsHeader(isLoggedIn) {
   return (
     <header className="header">
-      <HeaderNav />
+      <HeaderNav isLoggedIn={true}/>
       <section className="saved-news-header">
           <h2 className="saved-news-header__title">Saved articles</h2>
           <p className="saved-news-header__text">Elise, you have 5 saved articles</p>

@@ -11,7 +11,7 @@ function Main() {
     <main>
       <Preloader />
       <NotFound />
-      <NewsCardList cards={cards}/>
+      <NewsCardList cards={cards} isHome={true}/>
       <About />
     </main>
   );

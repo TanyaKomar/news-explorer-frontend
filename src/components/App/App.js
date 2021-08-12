@@ -7,22 +7,22 @@ import SavedNews from '../SavedNews/SavedNews';
 import Footer from '../Footer/Footer';
 // import CurrentUserContext from '../../contexts/CurrentUserContext';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
-import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 function App() {
   // const [currentUser, setCurrentUser] = React.useState({});
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
   return (
     // <CurrentUserContext.Provider value={currentUser}>
     <>
       <Route exact path="/">
-        <Header />
+        <Header isLoggedIn={isLoggedIn}/>
         <Main />
       </Route>
       <Route exact path="/saved-news">
-        <SavedNewsHeader />
+        <SavedNewsHeader isLoggedIn={isLoggedIn}/>
         <SavedNews />
       </Route>
-      <PopupWithForm />
       <Footer />
     </>
     // </CurrentUserContext.Provider>

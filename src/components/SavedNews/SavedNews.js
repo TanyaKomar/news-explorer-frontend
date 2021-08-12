@@ -4,7 +4,7 @@ import cards from '../../config/cards';
 
 function SavedNews() {
   return (
-    <NewsCardList cards={cards} />
+    <NewsCardList cards={cards} isHome={false} />
   );
 }
 
