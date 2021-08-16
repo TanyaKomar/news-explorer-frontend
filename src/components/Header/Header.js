@@ -26,7 +26,7 @@ function Header(isLoggedIn) {
 
   return (
     <>
-      <div className="header__overlay">
+      <div className="background">
         <header className="header">
           <HeaderNav isLoggedIn={false} openPopup={openPopup} isHome={isHome} setIsHome={setIsHome}/>
         </header>
