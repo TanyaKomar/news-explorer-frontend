@@ -1,17 +1,16 @@
 import './HeaderNav.css';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import menu from '../../images/header-nav_menu.svg';
 
 function HeaderNav({ isLoggedIn, openPopup, isHome }) {
-const [headerMobile, setHeaderMobile] = React.useState(false);
+const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 let headerClasses = 'header-nav';
 if(!isHome){
   headerClasses += ` header-nav_theme_light`
 }
 
-if(headerMobile){
-  headerClasses += ' header-nav_mobile'
+if(isMenuOpen){
+  headerClasses += ` header-nav_menu_open`
 }
 
   return (
@@ -19,11 +18,16 @@ if(headerMobile){
       <NavLink className="header-nav__title" to="/">
         NewsExplorer
       </NavLink>
-      <img className="header-nav__menu" src={menu} alt="navigation menu" onClick={()=>{setHeaderMobile(true)}}></img>
-      <button className="header-nav__close" type="button" aria-label="Close navigation" onClick={()=>{setHeaderMobile(false)}}></button>
+      <button className="header-nav__menu" type="button" aria-label="Open navigation menu" onClick={()=>{setIsMenuOpen(true)}}>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="8" width="16" height="2" fill="white"/>
+            <rect x="4" y="14" width="16" height="2" fill="white"/>
+        </svg>
+      </button>
+      <button className="header-nav__close" type="button" aria-label="Close navigation" onClick={()=>{setIsMenuOpen(false)}}></button>
       <ul className="header-nav__items">
         <li>
-          <NavLink className={`header-nav__link${isHome ? " header-nav__link_active" : ""}`} to="/">
+          <NavLink className={`header-nav__link${(isHome && !isMenuOpen) ? " header-nav__link_active" : ""}`} to="/">
             Home
           </NavLink>
         </li>

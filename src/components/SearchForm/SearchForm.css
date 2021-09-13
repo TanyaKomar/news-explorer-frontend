@@ -52,6 +52,7 @@
     box-sizing: border-box;
     border: none;
     padding-left: 24px;
+    caret-color: #2F71E5;
 }
 
 .search-form__input::placeholder {

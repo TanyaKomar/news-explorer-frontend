@@ -1,12 +1,12 @@
 import React from 'react';
 import './NewsCard.css';
+const moment = require('moment');
 
 function NewsCard({ card, isHome }) {
   const [isSaved, setIsSaved] = React.useState(false);
   
   return (
       <li className="news-card">
-        <img className="news-card__image" src={card.image} alt={card.title}></img>
         {isHome
           ? (
         <button className={`news-card__bookmark${isSaved ? " news-card__bookmark_marked" : ""}`} type="button" onClick={() => {setIsSaved(true)}}>
@@ -24,12 +24,15 @@ function NewsCard({ card, isHome }) {
           </svg>
           <span className="news-card__tooltip">Remove from saved</span>
         </button> </>)}
+        <a className="news-card__link" href={card.url}>
+        <img className="news-card__image" src={card.urlToImage} alt={card.title}></img>
         <div className="news-card__description">
-          <p className="news-card__date">{card.date}</p>
+          <p className="news-card__date">{moment(card.publishedAt).format("MMMM D, YYYY")}</p>
           <h3 className="news-card__title">{card.title}</h3>
-          <p className="news-card__text">{card.text}</p>
-          <p className="news-card__source">{card.source}</p>
+          <p className="news-card__text">{card.description}</p>
+          <p className="news-card__source">{card.source.name}</p>
         </div>
+        </a>
       </li>
   );
 }
