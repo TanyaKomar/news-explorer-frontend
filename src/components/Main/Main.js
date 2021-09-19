@@ -8,7 +8,7 @@ import About from '../About/About';
 import newsApi from '../../utils/NewsApi';
 import SearchForm from '../SearchForm/SearchForm';
 
-function Main({isLoggedIn, openPopup}) {
+function Main({isLoggedIn, openSignUpPopup}) {
   const [cards, setCards] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [notFound, setNotFound] = React.useState(false);
@@ -39,7 +39,7 @@ function Main({isLoggedIn, openPopup}) {
   return (
     <main>
       <div className="background">
-        <Header isLoggedIn={isLoggedIn} openPopup={openPopup} />
+        <Header isLoggedIn={isLoggedIn} openSignUpPopup={openSignUpPopup} />
         <SearchForm handleSubmit={handleSubmit} />
       </div>
       {isLoading && <Preloader />}

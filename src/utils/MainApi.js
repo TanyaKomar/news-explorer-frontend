@@ -14,7 +14,7 @@ class MainApi {
         });
     };
 
-    authorize = (email, password) => {
+    login = (email, password) => {
         return fetch(`${BASE_URL}/signin`, {
           method: "POST",
           headers: {
@@ -34,7 +34,7 @@ class MainApi {
           });
     };
 
-    getContent (token) {
+    getContent (token  = localStorage.getItem("token")) {
         return fetch(`${BASE_URL}/users/me`, {
           method: "GET",
           headers: {

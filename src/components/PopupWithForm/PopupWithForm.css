@@ -117,19 +117,21 @@
     font-size: 18px;
     line-height: 24px;
     font-weight: 500;
-    color: #fff;
-    background-color: #2F71E5;
-    box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
     margin: 0;
-    /* disabled
     color: #B6BCBF;
-    background-color: #E6E8EB; */
+    background-color: #E6E8EB;
+    box-shadow: none;
     border: none;
     border-radius: 100px;
-    box-shadow: none;
     padding: 20px 0;
     cursor: pointer;
     margin-top: 40px;
+}
+
+.popup__button_active {
+    color: #fff;
+    background-color: #2F71E5;
+    box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
 }
 
 .popup__redirection {
@@ -138,8 +140,9 @@
     line-height: 17px;
     font-weight: 400;
     color: #000;
+    display: flex;
+    justify-content: center;
     margin: 0;
-    text-align: center;
 }
 
 .popup__redirection-link {
@@ -150,7 +153,6 @@
     color: #2F71E5;
     border: none;
     background: none;
-    margin-top: 15px;
 }
 
 @media screen and (max-width: 585px) {

@@ -7,33 +7,52 @@ import Footer from '../Footer/Footer';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import mainApi from '../../utils/MainApi';
-import PopupWithForm from '../PopupWithForm/PopupWithForm';
-
-
+import Register from '../Register/Register';
+import Login from '../Login/Login';
+import SuccessPopup from '../SuccessPopup/SuccessPopup';
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [isOpenSigninPopup, setIsOpenSigninPopup] = React.useState(false);
-  const [popupType, setPopupType] = React.useState('signin');
+  const [isSignUpPopupOpen, setIsSignUpPopupOpen] = React.useState(false);
+  const [isSignInPopupOpen, setIsSignInPopupOpen] = React.useState(false);
+  const [isSuccessPopupOpen, setIsSuccessPopupOpen] = React.useState(false);
   const [submitError, setSubmitError] = React.useState('');
 
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
 
-  const closePopup = () => {
-    setIsOpenSigninPopup(false);
+  React.useEffect(() => {
+    isLoggedIn && mainApi
+      .getContent()
+      .then((user) => {
+        setCurrentUser(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [isLoggedIn]);
+
+  const closeAllPopups = () => {
+    setIsSignUpPopupOpen(false);
+    setIsSuccessPopupOpen(false);
+    setIsSignInPopupOpen(false);
     document.removeEventListener("keydown", escapeButton);
   }
   const escapeButton = (evt) => {
     if (evt.key === "Escape") {
-        closePopup();
+        closeAllPopups();
     }
   }
-  const openPopup = () => {
-    setPopupType('signin');
-    setIsOpenSigninPopup(true);
+  const openSignUpPopup = () => {
+    closeAllPopups();
+    setIsSignUpPopupOpen(true);
+    document.addEventListener("keydown", escapeButton);
+  }
+  const openSignInPopup = () => {
+    closeAllPopups();
+    setIsSignInPopupOpen(true);
     document.addEventListener("keydown", escapeButton);
   }
 
@@ -56,7 +75,7 @@ function App() {
     [setValues, setErrors, setIsValid]
   );
 
-  const handleSignupSubmit = (e) => {
+  const handleRegisterSubmit = (e) => {
     e.preventDefault();
     mainApi
       .register(values.email, values.password, values.username)
@@ -64,24 +83,50 @@ function App() {
         if (data.message) {
           throw new Error(data.message);
         } else {
-          setPopupType('success');
+          setIsSignUpPopupOpen(false);
+          setIsSuccessPopupOpen(true);
+          resetForm();
         }
       })
       .catch((error) => setSubmitError(error.message));
+  }
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    mainApi
+      .login(values.email, values.password)
+      .then((data) => {
+        resetForm();
+        setIsLoggedIn(true);
+        closeAllPopups();
+        return data;
+      })
+      .catch((error) => {
+        setIsLoggedIn(false);
+        console.error(error);
+      });
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
     <>
       <Route exact path="/">
-        <Main isLoggedIn={isLoggedIn} openPopup={openPopup}/>
-        <PopupWithForm popupType={popupType} setPopupType={setPopupType} isOpen={isOpenSigninPopup} onClose={closePopup} handleChange={handleChange} values={values} errors={errors} submitError={submitError} handleSignupSubmit={(e)=>handleSignupSubmit(e)} resetForm={resetForm}/>
+        <Main isLoggedIn={isLoggedIn} openSignUpPopup={openSignUpPopup} />
       </Route>
       <Route exact path="/saved-news">
         <SavedNewsHeader isLoggedIn={isLoggedIn}/>
         <SavedNews />
       </Route>
       <Footer />
+      {isSignUpPopupOpen && (
+        <Register isSignUpPopupOpen={true} onClose={closeAllPopups} handleRegisterSubmit={handleRegisterSubmit} onReset={resetForm} handleChange={handleChange} errors={errors} submitError={submitError} isValid={isValid} openSignInPopup={openSignInPopup}/>
+      )}
+      {isSignInPopupOpen && (
+        <Login isSignInPopupOpen={true} onClose={closeAllPopups} handleLoginSubmit={handleLoginSubmit} onReset={resetForm} handleChange={handleChange} errors={errors} submitError={submitError} isValid={isValid} openSignUpPopup={openSignUpPopup}/>
+      )}
+      {isSuccessPopupOpen && (
+        <SuccessPopup isSuccessPopupOpen={true} onClose={closeAllPopups} openSignInPopup={openSignInPopup}/>
+      )}
     </>
     </CurrentUserContext.Provider>
   );
