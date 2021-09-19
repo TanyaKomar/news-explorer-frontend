@@ -3,6 +3,12 @@ import React from 'react';
 import NewsCard from '../NewsCard/NewsCard';
 
 function NewsCardList({ cards, isHome, searchError }) {
+  const [counter, setCounter] = React.useState(3);
+  const increaseCounter = () => {
+    setCounter(counter + 3);
+  }
+  const isShowMoreButton = cards.length > 3 && counter < cards.length;
+
   return (
     <>
     {searchError ? <p className="news-card-list__error">Sorry, something went wrong during the request. There may be a connection issue or the server may be down. Please try again later.</p> :
@@ -10,9 +16,10 @@ function NewsCardList({ cards, isHome, searchError }) {
       <div className="news-card-list__container">
       <h2 className="news-card-list__title">Search results</h2>
       <ul className="news-card-list__list">
-       {cards && cards.map((card) => <NewsCard card={card} key={JSON.stringify(card)} isHome={isHome}/>)}
+       {cards && cards.slice(0, counter).map((card) => <NewsCard card={card} key={JSON.stringify(card)} isHome={isHome}/>)}
       </ul>
-      <button className="news-card-list__button" type="button">Show more</button>
+     {isShowMoreButton &&
+      <button className="news-card-list__button" type="button" onClick = {increaseCounter}>Show more</button>}
       </div>
     </section>}
     </>
