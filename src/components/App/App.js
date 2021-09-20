@@ -1,6 +1,6 @@
 import './App.css';
 import React, {useState, useCallback} from 'react';
-import { Route } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 import Footer from '../Footer/Footer';
@@ -23,16 +23,19 @@ function App() {
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
 
+  const history = useHistory();
+
   React.useEffect(() => {
-    isLoggedIn && mainApi
+  mainApi
       .getContent()
       .then((user) => {
         setCurrentUser(user);
+        setIsLoggedIn(true);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, [isLoggedIn]);
+  },[]);
 
   const closeAllPopups = () => {
     setIsSignUpPopupOpen(false);
@@ -91,6 +94,12 @@ function App() {
       .catch((error) => setSubmitError(error.message));
   }
 
+  const logout = ()=>{
+    setIsLoggedIn(false);
+    history.push('/');
+    localStorage.removeItem('token');
+  }
+
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     mainApi
@@ -111,10 +120,10 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
     <>
       <Route exact path="/">
-        <Main isLoggedIn={isLoggedIn} openSignUpPopup={openSignUpPopup} />
+        <Main isLoggedIn={isLoggedIn} logout={logout} openSignUpPopup={openSignUpPopup} />
       </Route>
       <Route exact path="/saved-news">
-        <SavedNewsHeader isLoggedIn={isLoggedIn}/>
+        <SavedNewsHeader logout={logout} isLoggedIn={isLoggedIn}/>
         <SavedNews />
       </Route>
       <Footer />

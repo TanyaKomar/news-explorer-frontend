@@ -8,16 +8,18 @@ import About from '../About/About';
 import newsApi from '../../utils/NewsApi';
 import SearchForm from '../SearchForm/SearchForm';
 
-function Main({isLoggedIn, openSignUpPopup}) {
+function Main({isLoggedIn, openSignUpPopup, logout}) {
   const [cards, setCards] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [notFound, setNotFound] = React.useState(false);
   const [searchError, setSearchError] = React.useState(false);
+  const [keyword, setKeyword] = React.useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsLoading(true);
     setSearchError(false);
+    setKeyword(event.currentTarget[0].value);
     newsApi
     .getCards(event.currentTarget[0].value)
     .then(({articles}) => {
@@ -39,12 +41,12 @@ function Main({isLoggedIn, openSignUpPopup}) {
   return (
     <main>
       <div className="background">
-        <Header isLoggedIn={isLoggedIn} openSignUpPopup={openSignUpPopup} />
+        <Header isLoggedIn={isLoggedIn} logout={logout} openSignUpPopup={openSignUpPopup} />
         <SearchForm handleSubmit={handleSubmit} />
       </div>
       {isLoading && <Preloader />}
       {notFound && <NotFound />}
-      {!isLoading && cards.length!==0 && <NewsCardList searchError={searchError} cards={cards} isHome={true}/>}
+      {!isLoading && cards.length!==0 && <NewsCardList keyword={keyword} searchError={searchError} cards={cards} isHome={true} isLoggedIn={isLoggedIn}/>}
       <About />
     </main>
   );

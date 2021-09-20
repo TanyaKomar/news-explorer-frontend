@@ -1,5 +1,31 @@
 const BASE_URL = "http://localhost:3005";
 
+const transfomToUIModel =  (card)=>{
+  return {
+    keyword:  card.keyword,
+    title: card.title,
+    text: card.description,
+    description: card.text,
+    publishedAt: card.date,
+    source: {name:card.soruce},
+    url : card.link,
+    urlToImage : card.image,
+    _id:card._id
+  }
+}
+
+const transfomToBackendModel =  (card)=>{
+  return {
+    keyword:  card.keyword,
+    title: card.title,
+    text: card.description,
+    date: card.publishedAt,
+    source: card.source.name,
+    link : card.url,
+    image: card.urlToImage
+  }
+}
+
 class MainApi {
     register = (email, password, name) => {
         return fetch(`${BASE_URL}/signup`, {
@@ -47,7 +73,7 @@ class MainApi {
           .then((data) => data);
     };
 
-    getArticles (token) {
+    getArticles (token =localStorage.getItem("token")) {
         return fetch(`${BASE_URL}/articles`, {
           method: "GET",
           headers: {
@@ -57,9 +83,14 @@ class MainApi {
           },
         })
           .then((res) => res.json())
+          .then((articles=[])=>{
+            return articles.map(article => transfomToUIModel(article));
+          })
     };
+    
 
-    saveArticle ({ keyword, title, description, publishedAt, source, urlToImage }, token) {
+    saveArticle (card, token = localStorage.getItem("token")) {
+        const article = transfomToBackendModel(card);
         return fetch(`${BASE_URL}/articles`, {
           method: "POST",
           headers: {
@@ -67,12 +98,12 @@ class MainApi {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ keyword, title, description, publishedAt, source, urlToImage}),
+          body: JSON.stringify(article),
         })
           .then((res) => res.json());
     };
 
-    deleteArticle (cardID, token) {
+    deleteArticle (cardID, token = localStorage.getItem("token")) {
         return fetch(`${BASE_URL}/articles/${cardID}`, {
           method: "DELETE",
           headers: {
