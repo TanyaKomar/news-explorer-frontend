@@ -3,11 +3,11 @@ import React from 'react';
 import HeaderNav from '../HeaderNav/HeaderNav';
 
 function Header({isLoggedIn, openSignUpPopup, logout}) {
-  const [isHome, setIsHome] = React.useState(true);
+  const [isHome, setIsHome] = React.useState();
 
   return (
       <header className="header">
-        <HeaderNav logout={logout} isLoggedIn={isLoggedIn} openSignUpPopup={openSignUpPopup} isHome={isHome} setIsHome={setIsHome}/>
+        <HeaderNav logout={logout} isLoggedIn={isLoggedIn} openSignUpPopup={openSignUpPopup} isHome={true} setIsHome={setIsHome}/>
       </header>
   );
 }

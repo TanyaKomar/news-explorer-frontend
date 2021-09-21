@@ -17,6 +17,10 @@ if(isMenuOpen){
   headerClasses += ` header-nav_menu_open`
 }
 
+if(!isHome && isMenuOpen) {
+  headerClasses = ` header-nav_menu_open`
+}
+
   return (
     <nav className={headerClasses}>
       <NavLink className="header-nav__title" to="/">

@@ -5,7 +5,6 @@ import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 import Footer from '../Footer/Footer';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import mainApi from '../../utils/MainApi';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
@@ -26,6 +25,7 @@ function App() {
   const history = useHistory();
 
   React.useEffect(() => {
+    localStorage.getItem('token') &&
   mainApi
       .getContent()
       .then((user) => {
@@ -35,7 +35,7 @@ function App() {
       .catch((error) => {
         console.error(error);
       });
-  },[]);
+  },[isLoggedIn]);
 
   const closeAllPopups = () => {
     setIsSignUpPopupOpen(false);
@@ -123,8 +123,7 @@ function App() {
         <Main isLoggedIn={isLoggedIn} logout={logout} openSignUpPopup={openSignUpPopup} />
       </Route>
       <Route exact path="/saved-news">
-        <SavedNewsHeader logout={logout} isLoggedIn={isLoggedIn}/>
-        <SavedNews />
+        <SavedNews isLoggedIn={isLoggedIn} logout={logout} />
       </Route>
       <Footer />
       {isSignUpPopupOpen && (
