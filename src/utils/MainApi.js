@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:3005";
+const BASE_URL = "https://www.api.news-explorer.tk2.students.nomoreparties.site";
+// const BASE_URL = "http://34.135.176.110:3005"
 
 const transfomToUIModel =  (card)=>{
   return {

@@ -46,7 +46,8 @@ function Main({isLoggedIn, openSignUpPopup, logout}) {
       </div>
       {isLoading && <Preloader />}
       {notFound && <NotFound />}
-      {!isLoading && cards.length!==0 && <NewsCardList keyword={keyword} searchError={searchError} cards={cards} isHome={true} isLoggedIn={isLoggedIn}/>}
+      {!isLoading && cards.length!==0 && <NewsCardList keyword={keyword} cards={cards} isHome={true} isLoggedIn={isLoggedIn}/>}
+      {searchError && <p className="news-card-list__error">Sorry, something went wrong during the request. There may be a connection issue or the server may be down. Please try again later.</p>}
       <About />
     </main>
   );
