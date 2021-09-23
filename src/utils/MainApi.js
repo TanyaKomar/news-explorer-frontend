@@ -70,7 +70,7 @@ class MainApi {
             Authorization: `Bearer ${token}`,
           },
         })
-          .then((res) => res.json())
+          .then((res) => (res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`)))
           .then((data) => data);
     };
 
@@ -83,7 +83,7 @@ class MainApi {
             Authorization: `Bearer ${token}`,
           },
         })
-          .then((res) => res.json())
+          .then((res) => (res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`)))
           .then((articles=[])=>{
             return articles.map(article => transfomToUIModel(article));
           })
@@ -101,7 +101,7 @@ class MainApi {
           },
           body: JSON.stringify(article),
         })
-          .then((res) => res.json());
+        .then((res) => (res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`)));
     };
 
     deleteArticle (cardID, token = localStorage.getItem("token")) {
