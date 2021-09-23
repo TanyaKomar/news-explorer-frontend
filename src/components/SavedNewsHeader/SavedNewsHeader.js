@@ -1,4 +1,3 @@
-import './SavedNewsHeader.css';
 import '../HeaderNav/HeaderNav.css';
 import React from 'react';
 import HeaderNav from '../HeaderNav/HeaderNav';

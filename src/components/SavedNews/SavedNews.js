@@ -10,7 +10,8 @@ function SavedNews({isLoggedIn, logout}) {
   const currentUser = React.useContext(CurrentUserContext);
   const [cards, setCards] = React.useState([]);
   const [refreshId, setRefreshId] = React.useState();
-  const refresh = ()=>{
+
+  const refresh = () => {
     if (refreshId>0){
       setRefreshId(-1)
     }else{
@@ -18,7 +19,6 @@ function SavedNews({isLoggedIn, logout}) {
     }
   }
 
-  
   const getKyewordString = (cards)=>{
     const keywords = [...new Set( cards.map(card=>card.keyword))];
     let result = keywords.slice(0,2).join(', ');
@@ -43,10 +43,10 @@ function SavedNews({isLoggedIn, logout}) {
   return (
     <div className="saved-news">
       <SavedNewsHeader isLoggedIn={isLoggedIn} logout={logout} isHome={false}/>
-      <section className="saved-news-header">
-          <h2 className="saved-news-header__title">Saved articles</h2>
-          <p className="saved-news-header__text">{currentUser && currentUser.name}, you have{` ${cards.length}`}{' '}saved article{cards.length !== 1 ? 's' : ''}</p>
-          {cards.length > 0 && <p className="saved-news-header__keyword">By keywords:&#160;<span className="saved-news-header__accent">{getKyewordString(cards)}</span>
+      <section className="saved-news-info">
+          <h2 className="saved-news-info__title">Saved articles</h2>
+          <p className="saved-news-info__text">{currentUser && currentUser.name}, you have{` ${cards.length}`}{' '}saved article{cards.length !== 1 ? 's' : ''}</p>
+          {cards.length > 0 && <p className="saved-news-info__keyword">By keywords:&#160;<span className="saved-news-info__accent">{getKyewordString(cards)}</span>
           </p>}
       </section>
       <NewsCardList refresh={refresh} cards={cards} isHome={false} isLoggedIn={true} />

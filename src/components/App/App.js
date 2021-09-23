@@ -1,6 +1,7 @@
 import './App.css';
-import React, {useState, useCallback} from 'react';
-import { Route, useHistory } from 'react-router-dom';
+import React, {useState, useEffect, useCallback} from 'react';
+import { Route, Switch, useHistory } from 'react-router-dom';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 import Footer from '../Footer/Footer';
@@ -12,7 +13,7 @@ import SuccessPopup from '../SuccessPopup/SuccessPopup';
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(!!localStorage.getItem('token'));
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = React.useState(false);
   const [isSignInPopupOpen, setIsSignInPopupOpen] = React.useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = React.useState(false);
@@ -118,24 +119,22 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-    <>
+    <Switch>
       <Route exact path="/">
         <Main isLoggedIn={isLoggedIn} logout={logout} openSignUpPopup={openSignUpPopup} />
+        {isSignUpPopupOpen && (
+          <Register isSignUpPopupOpen={true} onClose={closeAllPopups} handleRegisterSubmit={handleRegisterSubmit} onReset={resetForm} handleChange={handleChange} errors={errors} submitError={submitError} isValid={isValid} openSignInPopup={openSignInPopup}/>
+        )}
+        {isSignInPopupOpen && (
+          <Login isSignInPopupOpen={true} onClose={closeAllPopups} handleLoginSubmit={handleLoginSubmit} onReset={resetForm} handleChange={handleChange} errors={errors} submitError={submitError} isValid={isValid} openSignUpPopup={openSignUpPopup}/>
+        )}
+        {isSuccessPopupOpen && (
+          <SuccessPopup isSuccessPopupOpen={true} onClose={closeAllPopups} openSignInPopup={openSignInPopup}/>
+        )}
       </Route>
-      <Route exact path="/saved-news">
-        <SavedNews isLoggedIn={isLoggedIn} logout={logout} />
-      </Route>
-      <Footer />
-      {isSignUpPopupOpen && (
-        <Register isSignUpPopupOpen={true} onClose={closeAllPopups} handleRegisterSubmit={handleRegisterSubmit} onReset={resetForm} handleChange={handleChange} errors={errors} submitError={submitError} isValid={isValid} openSignInPopup={openSignInPopup}/>
-      )}
-      {isSignInPopupOpen && (
-        <Login isSignInPopupOpen={true} onClose={closeAllPopups} handleLoginSubmit={handleLoginSubmit} onReset={resetForm} handleChange={handleChange} errors={errors} submitError={submitError} isValid={isValid} openSignUpPopup={openSignUpPopup}/>
-      )}
-      {isSuccessPopupOpen && (
-        <SuccessPopup isSuccessPopupOpen={true} onClose={closeAllPopups} openSignInPopup={openSignInPopup}/>
-      )}
-    </>
+      <ProtectedRoute exact path="/saved-news" component={SavedNews} isLoggedIn={isLoggedIn} logout={logout} openSignInPopup={openSignInPopup} />
+    </Switch>
+    <Footer />
     </CurrentUserContext.Provider>
   );
 }
