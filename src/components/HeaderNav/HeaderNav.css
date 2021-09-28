@@ -1,0 +1,197 @@
+.header-nav {
+    max-width: 1440px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 104px;
+    align-items: center;
+    margin: auto;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.header-nav_theme_light {
+    border-bottom: 1px solid #D1D2D6;
+}
+
+.header-nav_theme_light .header-nav__title {
+    color: #1A1B22;
+}
+
+.header-nav_theme_light .header-nav__link {
+    color: #1A1B22;
+}
+
+.header-nav_theme_light .header-nav__link_active {
+    border-bottom: 3px solid #1A1B22;
+}
+
+.header-nav_theme_light .header-nav__button {
+    border: 1px solid #1A1B22;
+    color: #1A1B22;
+}
+
+.header-nav_theme_light .header-nav__logout path {
+    fill: #1A1B22;
+}
+
+.header-nav_theme_light .header-nav__menu rect {
+    fill: #1A1B22;
+}
+
+.header-nav__title {
+    font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+}
+
+.header-nav__menu {
+    display: none;
+}
+
+.header-nav__close {
+    display: none;
+}
+
+.header-nav__items {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header-nav__link {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #B6BCBF;
+    margin: 0;
+    padding: 28px 12px;
+    margin-right: 40px;
+    text-decoration: none;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.header-nav__link_active {
+    border-bottom: 3px solid #fff;
+    color: #fff;
+}
+
+.header-nav__button {
+    border: 1px solid #fff;
+    border-radius: 100px;
+    background: none;
+    color: #fff;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.header-nav__button_signin {
+    padding: 12px 60px;
+}
+
+.header-nav__button_logout {
+    padding: 12px 18px;
+}
+
+.header-nav__logout {
+    margin-left: 18px;
+}
+
+@media screen and (max-width: 896px) {
+    .header-nav {
+        max-width: calc(100% - 2 * 40px);
+        padding: 0 40px;
+        height: 66px;
+    }
+
+    .header-nav__link {
+        font-size: 16px;
+        margin-right: 16px;
+        padding: 21px 10px;
+    }
+
+    .header-nav__button_signin {
+        font-size: 16px;
+        padding: 10px 50px;
+    }
+}
+
+@media screen and (max-width: 585px) {
+    .header-nav {
+        max-width: calc(100% - 2 * 16px);
+        padding: 0 16px;
+    }
+
+    .header-nav {
+        height: 56px;
+    }
+    .header-nav__menu {
+        display: block;
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+    }
+    .header-nav__items {
+        display: none;
+    }
+
+    .header-nav_menu_open{
+        min-height: 230px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        background-color: #1A1B22;
+        border-bottom: none;
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
+        padding: 16px 16px 24px;
+        margin: 0;
+    }
+    .header-nav_menu_open .header-nav__title {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0 16px 16px;
+    }
+    .header-nav_menu_open .header-nav__menu{
+        display: none;
+    }
+    .header-nav_menu_open .header-nav__close {
+        display: flex;
+        width: 14px;
+        height: 14px;
+        background: url(../../images/close.svg) center no-repeat;
+        border: none;
+        position: absolute;
+        top: 20px;
+        right: 26px;
+        padding: 0;
+        cursor: pointer;
+    }
+    .header-nav_menu_open .header-nav__items {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        /* margin: 32px 0 24px; */
+    }
+
+    .header-nav_menu_open .header-nav__link {
+        border-bottom: none;
+    }
+    .header-nav_menu_open .header-nav__button {
+        align-self: center;
+        margin-top: 40px;
+        padding: 16px 100px;
+    }
+}
