@@ -2,27 +2,14 @@ import './HeaderNav.css';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
+import HeaderNavMenu from '../HeaderNavMenu/HeaderNavMenu';
 
 function HeaderNav({ isLoggedIn, openSignUpPopup, isHome, logout }) {
 const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 const currentUser = React.useContext(CurrentUserContext);
 
-
-let headerClasses = 'header-nav';
-if(!isHome){
-  headerClasses += ` header-nav_theme_light`
-}
-
-if(isMenuOpen){
-  headerClasses += ` header-nav_menu_open`
-}
-
-if(!isHome && isMenuOpen) {
-  headerClasses = ` header-nav_menu_open`
-}
-
   return (
-    <nav className={headerClasses}>
+    <nav className={`header-nav${!isHome ? " header-nav_theme_light" : ""}`}>
       <NavLink className="header-nav__title" to="/">
         NewsExplorer
       </NavLink>
@@ -32,10 +19,9 @@ if(!isHome && isMenuOpen) {
             <rect x="4" y="14" width="16" height="2" fill="white"/>
         </svg>
       </button>
-      <button className="header-nav__close" type="button" aria-label="Close navigation" onClick={()=>{setIsMenuOpen(false)}}></button>
       <ul className="header-nav__items">
         <li>
-          <NavLink className={`header-nav__link${(isHome && !isMenuOpen) ? " header-nav__link_active" : ""}`} to="/">
+          <NavLink className={`header-nav__link${isHome ? " header-nav__link_active" : ""}`} to="/">
             Home
           </NavLink>
         </li>
@@ -62,6 +48,7 @@ if(!isHome && isMenuOpen) {
         </li>
         </>}
       </ul>
+    {isMenuOpen && (<HeaderNavMenu isLoggedIn={isLoggedIn} isHome={isHome} openSignUpPopup={openSignUpPopup} logout={logout} />)}
     </nav>
   );
 }

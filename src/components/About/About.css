@@ -3,6 +3,7 @@
     padding: 80px 104px;
     display: flex;
     background-color: #fff;
+    margin: auto;
 }
 
 .about__image {

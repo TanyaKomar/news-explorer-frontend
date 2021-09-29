@@ -67,11 +67,13 @@ function App() {
   const openSignUpPopup = () => {
     closeAllPopups();
     setIsSignUpPopupOpen(true);
+    resetForm();
     document.addEventListener("keydown", escapeButton);
   }
   const openSignInPopup = () => {
     closeAllPopups();
     setIsSignInPopupOpen(true);
+    resetForm();
     document.addEventListener("keydown", escapeButton);
   }
 
@@ -105,7 +107,6 @@ function App() {
         } else {
           setIsSignUpPopupOpen(false);
           setIsSuccessPopupOpen(true);
-          resetForm();
         }
       })
       .catch((error) => setSubmitError(error.message))
