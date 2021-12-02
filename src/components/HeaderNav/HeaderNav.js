@@ -5,11 +5,17 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 import HeaderNavMenu from '../HeaderNavMenu/HeaderNavMenu';
 
 function HeaderNav({ isLoggedIn, openSignUpPopup, isHome, logout }) {
-const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 const currentUser = React.useContext(CurrentUserContext);
+const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+// const mediaQuery = window.matchMedia('(min-width: 585px)');
+
+// if (mediaQuery.matches) {
+//   setIsMenuOpen(false);
+// }
 
   return (
-    <nav className={`header-nav${!isHome ? " header-nav_theme_light" : ""}`}>
+    <nav>
+      <div className={`header-nav${!isHome ? " header-nav_theme_light" : ""}`}>
       <NavLink className="header-nav__title" to="/">
         NewsExplorer
       </NavLink>
@@ -48,7 +54,8 @@ const currentUser = React.useContext(CurrentUserContext);
         </li>
         </>}
       </ul>
-    {isMenuOpen && (<HeaderNavMenu isLoggedIn={isLoggedIn} isHome={isHome} openSignUpPopup={openSignUpPopup} logout={logout} />)}
+      </div>
+      {isMenuOpen && (<HeaderNavMenu isLoggedIn={isLoggedIn} isHome={isHome} openSignUpPopup={openSignUpPopup} logout={logout} isMenuOpen={true} setIsMenuOpen={setIsMenuOpen} />)}
     </nav>
   );
 }
